@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>XML-Suche</title>
+    <style>
+	  #xmlData::placeholder {
+        text-align: center;
+      }
+      #searchForm {
+        text-align: center;
+      }
+      input[type="text"] {
+        width: 300px;
+        height: 80px;
+        margin-bottom: 10px;
+      }
+      button {
+        height: 30px;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="searchForm">
+      <input type="text" id="xmlData" placeholder="mAirList Suchmaschine">
+      <br>
+      <button type="button" onclick="searchGoogle()">Google</button>
+      <button type="button" onclick="searchWikipedia()">Wikipedia</button>
+      <button type="button" onclick="clearInput()">Löschen</button>
+    </div>
+    <div id="searchResults"></div>
+
+    <script>
+      function searchGoogle() {
+        var xmlString = document.getElementById("xmlData").value;
+        var parser = new DOMParser();
+        var xmlDoc = parser.parseFromString(xmlString, "text/xml");
+        var release = "Release";
+        var artist = xmlDoc.getElementsByTagName("Artist")[0].textContent;
+        var title = xmlDoc.getElementsByTagName("Title")[0].textContent;
+        var searchString = release + " " + artist + " " + title;
+        var searchUrl = "https://www.google.com/search?q=" + encodeURIComponent(searchString);
+        window.open(searchUrl, "_blank");
+      }
+
+      function searchWikipedia() {
+        var xmlString = document.getElementById("xmlData").value;
+        var parser = new DOMParser();
+        var xmlDoc = parser.parseFromString(xmlString, "text/xml");
+        var artist = xmlDoc.getElementsByTagName("Artist")[0].textContent;
+        var searchString = artist;
+        var searchUrl = "https://de.wikipedia.org/wiki/" + encodeURIComponent(searchString);
+        window.open(searchUrl, "_blank");
+      }
+
+      function clearInput() {
+        document.getElementById("xmlData").value = "";
+      }
+    </script>
+  </body>
+</html>
