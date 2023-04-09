@@ -11,26 +11,30 @@
         text-align: center;
       }
       input[type="text"] {
-        width: 320px;
-        height: 80px;
+        width: 355px;
+        height: 30px;
         margin-bottom: 10px;
       }
       button {
         height: 30px;
         margin-right: 10px;
-      }
-    </style>
+		}
+</style>
   </head>
-  <body>
+	<body>
+		<body bgcolor="f0f0f0">
     <div id="searchForm">
       <input type="text" id="xmlData" placeholder="Copy&Paste XML Data">
       <br>
       <button type="button" onclick="searchGoogle()">Google</button>
       <button type="button" onclick="searchWikipedia()">Wikipedia</button>
+	  <button type="button" onclick="searchLivenation()">Konzerte</button>
+	  <br>
+	  <hr>
       <button type="button" onclick="clearInput()">Löschen</button>
     </div>
     <div id="searchResults"></div>
-
+		</body>
     <script>
       function searchGoogle() {
         var xmlString = document.getElementById("xmlData").value;
@@ -51,6 +55,16 @@
         var artist = xmlDoc.getElementsByTagName("Artist")[0].textContent;
         var searchString = artist;
         var searchUrl = "https://de.wikipedia.org/wiki/" + encodeURIComponent(searchString);
+        window.open(searchUrl, "_blank");
+      }
+	  
+	  function searchLivenation() {
+        var xmlString = document.getElementById("xmlData").value;
+        var parser = new DOMParser();
+        var xmlDoc = parser.parseFromString(xmlString, "text/xml");
+        var artist = xmlDoc.getElementsByTagName("Artist")[0].textContent;
+        var searchString = artist;
+        var searchUrl = "https://www.livenation.de/search?keyword=" + encodeURIComponent(searchString);
         window.open(searchUrl, "_blank");
       }
 
