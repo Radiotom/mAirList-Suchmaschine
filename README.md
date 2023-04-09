@@ -13,6 +13,3 @@ Windows Start - Alle Programme - mAirList7 - Konfiguration
 GUI - Bildschirmobjekte - Webbrowser
 
 Als URL könnt ihr euch den Inhalt der index.html direkt auf eurer Festplatte speichern
-oder ihr bindet direkt die URL von Git ein.
-Sollte ich noch Änderungen und Anpassungen vornehmen, seht ihr das dann direkt.
- 
