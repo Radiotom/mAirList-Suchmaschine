@@ -2,42 +2,30 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>mAirList Suchmaschine</title>
+    <title>mAirList XML Suchmaschine</title>
     <style>
-	  #xmlData::placeholder {
-        text-align: center;
-      }
-      #searchForm {
-        text-align: center;
-      }
-      input[type="text"] {
-        width: 355px;
-        height: 30px;
-        margin-bottom: 10px;
-      }
-      button {
-        height: 30px;
-        margin-right: 10px;
-		}
-</style>
+	#xmlData::placeholder {text-align: center;}
+      	#searchForm {text-align: center;}
+      	input[type="text"] {width: 355px; height: 30px; margin-bottom: 10px;}
+	button {height: 30px; margin-right: 10px;}
+    </style>
   </head>
-	<body>
-		<body bgcolor="f0f0f0">
+<body>
+  <body bgcolor="f0f0f0">
     <div id="searchForm">
       <input type="text" id="xmlData" placeholder="Copy&Paste XML Data">
       <br>
-      <button type="button" title="[Artist/Title] Song Erscheinung auf Google suchen" onclick="searchGoogle()">Google</button>
-      <button type="button" title="[Artist] bei Wikipedia suchen" onclick="searchWikipedia()">Wikipedia</button>
-	  <button type="button" title="[Artist] Konzerte finden" onclick="searchLivenation()">Konzerte</button>
-	  <button type="button" title="[Artist] bei Facebook suchen" onclick="searchFacebook()">Facebook</button>
+     	<button type="button" title="[Artist/Title] Song Erscheinung auf Google suchen" onclick="searchGoogle()">Google</button>
+      	<button type="button" title="[Artist] bei Wikipedia suchen" onclick="searchWikipedia()">Wikipedia</button>
+	<button type="button" title="[Artist] Konzerte finden" onclick="searchLivenation()">Konzerte</button>
+	<button type="button" title="[Artist] bei Facebook suchen" onclick="searchFacebook()">Facebook</button>
 	  <br>
 	  <hr>
-      <button type="button" title="XML Daten löschen" onclick="clearInput()">Löschen</button>
+      	<button type="button" title="XML Daten löschen" onclick="clearInput()">Löschen</button>
     </div>
-    <div id="searchResults"></div>
-		</body>
+</body>
     <script>
-      function searchGoogle() {
+          function searchGoogle() {
         var xmlString = document.getElementById("xmlData").value;
         var parser = new DOMParser();
         var xmlDoc = parser.parseFromString(xmlString, "text/xml");
@@ -49,7 +37,7 @@
         window.open(searchUrl, "_blank");
       }
 
-      function searchWikipedia() {
+      	  function searchWikipedia() {
         var xmlString = document.getElementById("xmlData").value;
         var parser = new DOMParser();
         var xmlDoc = parser.parseFromString(xmlString, "text/xml");
@@ -79,9 +67,7 @@
         window.open(searchUrl, "_blank");
       }
 	  
-      function clearInput() {
-        document.getElementById("xmlData").value = "";
-      }
+      function clearInput() {document.getElementById("xmlData").value = "";}
     </script>
   </body>
 </html>
