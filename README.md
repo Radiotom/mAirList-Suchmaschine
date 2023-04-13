@@ -6,7 +6,7 @@ Hier stelle ich euch meine mAirList Suchmaschine zu verfügung. Ich werde immer 
 
 
 EINFÜHRUNG:
-- Um sie zu verwenden kannst du diese HTML Webseite sowohl als "Standalone" als auch im integrierten Webbrowser
+- Um sie zu verwenden kannst du die HTML Webseite mairlistsuche.html sowohl als "Standalone" als auch im integrierten Webbrowser
   von mAirList einbinden. (ab Version 7)
 - Die Webseite passt sich automatisch der Größe an dank Bootstrap. (Hierbei wird der große Schriftzug ausgeblendet)
 - Um die Suchmaschine zu benutzen, musst du nur einen Titel in der mAirList Playliste markieren, STRG+C (für Kopieren),
@@ -25,9 +25,9 @@ EINFÜHRUNG:
 			
 INSTALLATION:
 
-Damit du diese Webseite verwenden kannst, sowohl in mAirList als auch als "StandAlone Version" kannst du diese HTML Seite
-an einen beliebigen Ort auf deinem Computer speichern. Ab mAirList V7 kannst du unter GUI Elemente einen Webbrowser
-hinzufügen. Dort gibst du dann einfach den lokalen Pfad zur entspechenden HTML Seite an. Bspw. mairlistsuche.html
+Damit du diese Webseite verwenden kannst, sowohl in mAirList als auch als "StandAlone Version" kannst du die HTML Seite
+mairlistsuche.html an einen beliebigen Ort auf deinem Computer speichern. Ab mAirList V7 kannst du unter GUI Elemente einen Webbrowser
+hinzufügen. Dort gibst du dann einfach den lokalen Pfad zur entspechenden HTML Seite an. Bspw. C:/mairlistsuche.html
 Schon kannst du die Suchmaschine integriert in mAirList verwenden.
 Solltest du kein mAirList V7 besitzen, kannst du diese Seite auch ganz normal in deinem Browser verwenden. Das Funktions-
 prinzip bleibt das selbe.
