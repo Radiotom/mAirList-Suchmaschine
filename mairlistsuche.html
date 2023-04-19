@@ -171,19 +171,25 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script>
+            const xmlElement = document.getElementById('xmlData');
+            let lastSearch = {};
+
             function parseSearch() {
-                let xmlString = document.getElementById('xmlData').value;
+                let xmlString = xmlElement.value;
                 let parser = new DOMParser();
                 let xmlDoc = parser.parseFromString(xmlString, 'text/xml');
                 let artist =
                     xmlDoc.getElementsByTagName('Artist')[0].textContent;
                 let title = xmlDoc.getElementsByTagName('Title')[0].textContent;
-                return { artist, title };
+                lastSearch = { artist, title };
+                return lastSearch;
             }
 
             // Hier ist es wichtig, dass `platform` kleingeschrieben ist, da sonst die Fallunterscheidung nicht funktioniert
             function search(platform) {
-                let { artist, title } = parseSearch();
+                if (Object.keys(lastSearch).length === 0) return;
+                let { artist, title } = lastSearch;
+
                 let searchUrl = '';
                 switch (platform) {
                     case 'google':
@@ -223,8 +229,22 @@
                 window.open(searchUrl, '_blank');
             }
 
+            xmlElement.addEventListener('input', (event) => {
+                if (event.target) {
+                    const { artist, title } = parseSearch();
+                    if (artist && title) {
+                        xmlElement.value = `${artist} - ${title}`;
+                    }
+                }
+            });
+
+            xmlElement.addEventListener('beforeinput', (event) => {
+                clearInput();
+            });
+
             function clearInput() {
-                document.getElementById('xmlData').value = '';
+                xmlElement.value = '';
+                lastSearch = {};
             }
             function getInfo() {
                 window.open(
