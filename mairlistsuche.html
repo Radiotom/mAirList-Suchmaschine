@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-  <head>
-	<!--Dies ist eine mAirList XML Suchmaschine.-->
-	
-	<!--EINFÜHRUNG:
+    <head>
+        <!--Dies ist eine mAirList XML Suchmaschine.-->
+
+        <!--EINFÜHRUNG:
 		- Um sie zu verwenden kannst du diese HTML Webseite sowohl als "Standalone" als auch im integrierten Webbrowser
 		  von mAirList einbinden. (ab Version 7)
 		- Die Webseite passt sich automatisch der Größe an dank Bootstrap. (Hierbei wird der große Schriftzug ausgeblendet)
@@ -39,146 +39,219 @@
 	EIGENE WORTE:
 		Solltet ihr Verbesserungen gemacht haben, lasst es mich auf GitHub wissen damit wir alle davon profitoieren können. 
 		Viel Spaß damit	//RADIOTOM
-	-->							
-    <meta charset="UTF-8">
-    <title>mAirList XML Suchmaschine</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <style>
-	#textContainer	{
-		text-align: center; display: none; font-size: 40px;
-		}
-    @media screen and (min-width: 800px)	{
-		#textContainer{display: block;}
-		}
-	#xmlData::placeholder	{
-		text-align: center;
-		}
-      
-    #searchForm	{
-		text-align: center;
-		}
-	body	{
-		font-family: Arial; 	/* Hier kannst du die gewünschte Schriftart ändern */
-		font-size: 12px; 					/* Hier kannst du die gewünschte Schriftgröße ändern */
-	    background-color: #f0f0f0; 			/* Hier kannst du die gewünschte Hintergrundfarbe ändern. Für mAirList DarkMode: #37474f normal #f0f0f0 */
-		line-height: 0.5; 					/* Hier kannst du den Wert anpassen, z.B. auf 1.1 oder 1 */
-		overflow: hidden;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		height: 100vh;
-		}
-	hr {
-		margin-top: 5px; 					/* Hier kannst du den gewünschten Abstand einstellen */
-		}
-	button {
-		background-color: #a6caf0; 			/* Hier kannst du die gewünschte Farbe ändern. Für mAirList DarkMode: #2a353b normal #a6caf0 */
-		color: #000000; 					/* Hier kannst du die Schriftfarbe der Buttons ändern. Für mAirList DarkMode: #ffffff normal #000000 */
-        height: 25px;
-        width: 80px;
-		border: 1px solid black;
-		outline: none;
-		}
-		
-    input[type="text"] {
-        width: 355px;
-        height: 30px;
-        margin-bottom: 10px;
-		}
-    </style>
-  </head>
-  <body class="d-flex justify-content-center">
-   <div class="container">
-    <div id="textContainer">
-      <p class="text">mAirList XML<br><br>Suchmaschine</p>
-	  <br>
-    </div>
-    <div id="searchForm">
-      <input type="text" id="xmlData" placeholder="Copy&Paste mAirList XML Data">
-      <br>
-      <button type="button" title="[Artist/Title] Song Erscheinung auf Google suchen" onclick="searchGoogle()">Google</button>
-      <button type="button" title="[Artist] bei Wikipedia suchen" onclick="searchWikipedia()">Wikipedia</button>
-      <button type="button" title="[Artist] Konzerte finden" onclick="searchLivenation()">Konzerte</button>
-	  <br><br>
-      <button type="button" title="[Artist] bei Facebook suchen" onclick="searchFacebook()">Facebook</button>
-	  <button type="button" title="[Artist] bei Twitter suchen" onclick="searchTwitter()">Twitter</button>
-	  <button type="button" title="[Artist] bei Laut.de suchen" onclick="searchLautde()">Laut.de</button>
-      <hr>
-      <button type="button" title="XML Daten löschen" onclick="clearInput()">Löschen</button>
-	  <button type="button" title="Info und Updates zur mAirList Suchmaschine" onclick="getInfo()">[i] GitHub</button>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script>
-          function searchGoogle() {
-        var xmlString = document.getElementById("xmlData").value;
-        var parser = new DOMParser();
-        var xmlDoc = parser.parseFromString(xmlString, "text/xml");
-        var release = "Release";
-        var artist = xmlDoc.getElementsByTagName("Artist")[0].textContent;
-        var title = xmlDoc.getElementsByTagName("Title")[0].textContent;
-        var searchString = release + " " + artist + " " + title;
-        var searchUrl = "https://www.google.com/search?q=" + encodeURIComponent(searchString);
-        window.open(searchUrl, "_blank");
-      }
+	-->
+        <meta charset="UTF-8" />
+        <title>mAirList XML Suchmaschine</title>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        />
+        <style>
+            #textContainer {
+                text-align: center;
+                display: none;
+                font-size: 40px;
+            }
+            @media screen and (min-width: 800px) {
+                #textContainer {
+                    display: block;
+                }
+            }
+            #xmlData::placeholder {
+                text-align: center;
+            }
 
-      	  function searchWikipedia() {
-        var xmlString = document.getElementById("xmlData").value;
-        var parser = new DOMParser();
-        var xmlDoc = parser.parseFromString(xmlString, "text/xml");
-        var artist = xmlDoc.getElementsByTagName("Artist")[0].textContent;
-        var searchString = artist;
-        var searchUrl = "https://de.wikipedia.org/wiki/" + encodeURIComponent(searchString);
-        window.open(searchUrl, "_blank");
-      }
-	  
-	  function searchLivenation() {
-        var xmlString = document.getElementById("xmlData").value;
-        var parser = new DOMParser();
-        var xmlDoc = parser.parseFromString(xmlString, "text/xml");
-        var artist = xmlDoc.getElementsByTagName("Artist")[0].textContent;
-        var searchString = artist;
-        var searchUrl = "https://www.livenation.de/search?keyword=" + encodeURIComponent(searchString);
-        window.open(searchUrl, "_blank");
-      }
-	  
-	  function searchFacebook() {
-        var xmlString = document.getElementById("xmlData").value;
-        var parser = new DOMParser();
-        var xmlDoc = parser.parseFromString(xmlString, "text/xml");
-        var artist = xmlDoc.getElementsByTagName("Artist")[0].textContent;
-        var searchString = artist;
-        var searchUrl = "https://www.facebook.com/search/top/?q=%23" + encodeURIComponent(searchString);
-        window.open(searchUrl, "_blank");
-      }
-	  
-	  function searchTwitter() {
-        var xmlString = document.getElementById("xmlData").value;
-        var parser = new DOMParser();
-        var xmlDoc = parser.parseFromString(xmlString, "text/xml");
-        var artist = xmlDoc.getElementsByTagName("Artist")[0].textContent;
-        var searchString = artist;
-        var searchUrl = "https://twitter.com/search?q=" + encodeURIComponent(searchString);
-        window.open(searchUrl, "_blank");
-      }
-	  
-	  function searchLautde() {
-        var xmlString = document.getElementById("xmlData").value;
-        var parser = new DOMParser();
-        var xmlDoc = parser.parseFromString(xmlString, "text/xml");
-        var artist = xmlDoc.getElementsByTagName("Artist")[0].textContent;
-        var searchString = artist;
-        var searchUrl = "https://www.laut.de/Suche?q=" + encodeURIComponent(searchString);
-        window.open(searchUrl, "_blank");
-      }
-	  
-      function clearInput()  {
-		document.getElementById("xmlData").value = "";
-	  }
-	  function getInfo()  {
-		window.open("https://github.com/Radiotom/mAirList-Suchmaschine", "_blank");
-	  }
-    </script>
-  </body>
+            #searchForm {
+                text-align: center;
+            }
+            body {
+                font-family: Arial; /* Hier kannst du die gewünschte Schriftart ändern */
+                font-size: 12px; /* Hier kannst du die gewünschte Schriftgröße ändern */
+                background-color: #f0f0f0; /* Hier kannst du die gewünschte Hintergrundfarbe ändern. Für mAirList DarkMode: #37474f normal #f0f0f0 */
+                line-height: 0.5; /* Hier kannst du den Wert anpassen, z.B. auf 1.1 oder 1 */
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            hr {
+                margin-top: 5px; /* Hier kannst du den gewünschten Abstand einstellen */
+            }
+            button {
+                background-color: #a6caf0; /* Hier kannst du die gewünschte Farbe ändern. Für mAirList DarkMode: #2a353b normal #a6caf0 */
+                color: #000000; /* Hier kannst du die Schriftfarbe der Buttons ändern. Für mAirList DarkMode: #ffffff normal #000000 */
+                height: 25px;
+                width: 80px;
+                border: 1px solid black;
+                outline: none;
+            }
+
+            input[type='text'] {
+                width: 355px;
+                height: 30px;
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body class="d-flex justify-content-center">
+        <div class="container">
+            <div id="textContainer">
+                <p class="text">mAirList XML<br /><br />Suchmaschine</p>
+                <br />
+            </div>
+            <div id="searchForm">
+                <input
+                    type="text"
+                    id="xmlData"
+                    placeholder="Copy & Paste mAirList XML Data"
+                />
+                <br />
+                <button
+                    type="button"
+                    title="[Artist/Title] Song Erscheinung auf Google suchen"
+                    onclick="search('google')"
+                >
+                    Google
+                </button>
+                <button
+                    type="button"
+                    title="[Artist] bei Wikipedia suchen"
+                    onclick="search('wikipedia')"
+                >
+                    Wikipedia
+                </button>
+                <button
+                    type="button"
+                    title="[Artist] Konzerte finden"
+                    onclick="search('livenation')"
+                >
+                    Konzerte
+                </button>
+                <br /><br />
+                <button
+                    type="button"
+                    title="[Artist] bei Facebook suchen"
+                    onclick="search('facebook')"
+                >
+                    Facebook
+                </button>
+                <button
+                    type="button"
+                    title="[Artist] bei Twitter suchen"
+                    onclick="search('twitter')"
+                >
+                    Twitter
+                </button>
+                <button
+                    type="button"
+                    title="[Artist] bei Laut.de suchen"
+                    onclick="search('lautde')"
+                >
+                    Laut.de
+                </button>
+                <hr />
+                <button
+                    type="button"
+                    title="XML Daten löschen"
+                    onclick="clearInput()"
+                >
+                    Löschen
+                </button>
+                <button
+                    type="button"
+                    title="Info und Updates zur mAirList Suchmaschine"
+                    onclick="getInfo()"
+                >
+                    [i] GitHub
+                </button>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script>
+            const xmlElement = document.getElementById('xmlData');
+            let lastSearch = {};
+
+            function parseSearch() {
+                let xmlString = xmlElement.value;
+                let parser = new DOMParser();
+                let xmlDoc = parser.parseFromString(xmlString, 'text/xml');
+                let artist =
+                    xmlDoc.getElementsByTagName('Artist')[0].textContent;
+                let title = xmlDoc.getElementsByTagName('Title')[0].textContent;
+                lastSearch = { artist, title };
+                return lastSearch;
+            }
+
+            // Hier ist es wichtig, dass `platform` kleingeschrieben ist, da sonst die Fallunterscheidung nicht funktioniert
+            function search(platform) {
+                if (Object.keys(lastSearch).length === 0) return;
+                let { artist, title } = lastSearch;
+
+                let searchUrl = '';
+                switch (platform) {
+                    case 'google':
+                        const searchString = `Release ${artist} ${title}`;
+                        searchUrl =
+                            'https://www.google.com/search?q=' +
+                            encodeURIComponent(searchString);
+                        break;
+                    case 'wikipedia':
+                        searchUrl =
+                            'https://de.wikipedia.org/wiki/' +
+                            encodeURIComponent(artist);
+                        break;
+                    case 'livenation':
+                        searchUrl =
+                            'https://www.livenation.de/search?keyword=' +
+                            encodeURIComponent(artist);
+                        break;
+                    case 'facebook':
+                        searchUrl =
+                            'https://www.facebook.com/search/top/?q=%23' +
+                            encodeURIComponent(artist);
+                        break;
+                    case 'twitter':
+                        searchUrl =
+                            'https://twitter.com/search?q=' +
+                            encodeURIComponent(artist);
+                        break;
+                    case 'lautde':
+                        searchUrl =
+                            'https://www.laut.de/Suche?q=' +
+                            encodeURIComponent(artist);
+                        break;
+                    default:
+                        break;
+                }
+                window.open(searchUrl, '_blank');
+            }
+
+            xmlElement.addEventListener('input', (event) => {
+                if (event.target) {
+                    const { artist, title } = parseSearch();
+                    if (artist && title) {
+                        xmlElement.value = `${artist} - ${title}`;
+                    }
+                }
+            });
+
+            xmlElement.addEventListener('beforeinput', (event) => {
+                clearInput();
+            });
+
+            function clearInput() {
+                xmlElement.value = '';
+                lastSearch = {};
+            }
+            function getInfo() {
+                window.open(
+                    'https://github.com/Radiotom/mAirList-Suchmaschine',
+                    '_blank'
+                );
+            }
+        </script>
+    </body>
 </html>
