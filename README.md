@@ -1,4 +1,6 @@
 # mAirList-Suchmaschine
+mairlistsuche.html
+
 Hier stelle ich euch meine mAirList Suchmaschine zu verfügung. Ich werde immer wieder mal anpassungen machen. 
 
 ![image](https://user-images.githubusercontent.com/118381734/231513030-8f9c7c0b-2f51-4c83-a860-f4f4d9086769.png)
@@ -41,6 +43,17 @@ Nutzerverhalten mittels IP Adress speicherung und noch vieles mehr. Jeder verwen
 Das hosten dieser HTML Seite auf einem eigenen Webspace im Internet ist nicht gewünscht! Sie dient lediglich zur lokalen Anwendung.
 
 EIGENE WORTE:
-
 Solltet ihr Verbesserungen gemacht haben, lasst es mich auf GitHub wissen damit wir alle davon profitoieren können. 
-Viel Spaß damit	//RADIOTOM	
+Viel Spaß damit	//RADIOTOM
+
+Update mairlistsuche2.html
+
+![image](https://github.com/user-attachments/assets/6da585ac-60d0-4aaa-89bc-22c4ff2add43)
+
+In dieser version habe ich ein paar Dinge entfernt die nie zum Einsatz kamen. Dafür wurde die Suchmaschine um Perplexity erweitert.
+Diese KI ist kostenlos und ohne Anmeldung verwendbar. Diese sucht im Internet nach Songinformationen und listet diese gebündelt
+fertig auf. Dabei sind auch immer die einzelnen Quellenangaben dabei. 
+
+![image](https://github.com/user-attachments/assets/ed44801b-e1de-472b-921a-c197cec50589)
+
+
